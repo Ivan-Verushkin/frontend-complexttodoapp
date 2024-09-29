@@ -1,13 +1,87 @@
-body {
+.navigation {
+  list-style: none;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  height: 40px;
+  padding: 0 30px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.nav-left {
+  display: flex;
+}
+
+.nav-right {
+  display: flex;
+}
+
+.nav-li {
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+}
+
+.nav-li:hover {
+  background-color: #575757;
+}
+
+.nav-li a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-li a:hover {
+  background-color: #575757;
+}
+
+body {
+  margin: 0;
+}
+
+#signInDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signInForm {
+  border-width: 2px;
+  margin-top: 50px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 2px;
+  width: 40%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.signInForm-input {
+  margin: 10px;
+  padding: 5px;
+}
+
+.signInButton {
+  background-color:  #333;
+  color: white;font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.signInButton:hover {
+  background-color: #575757;
 }
