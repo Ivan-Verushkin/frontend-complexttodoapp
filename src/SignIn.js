@@ -11,30 +11,39 @@ function SignIn(){
     const userpassword = '123';
     const [login, setLogin] =useState('');
     const [password, setPassword] =useState('');
-    const [loginFailed, setLoginFailed] = useState(false);
-    const [usernameEmpty, setUsernameEmpty] = useState(false);
+    const [errors, setErrors] = useState({});
+
+    const validateInputs = () => {
+        let validationErrors = {};
+        let isValid = true;
+
+        if(login === ''){
+            isValid = false;
+            validationErrors.loginEmpty = 'Login can not be empty';
+        }
+
+        if(password === ''){
+            isValid = false;
+            validationErrors.passwordEmpty = 'Password can not be empty';
+        } else if (!(username === login && userpassword === password)){
+            isValid = false;
+            validationErrors.loginPasswordMismatch = 'Login and password combination are wrong. Please try again';
+        }
+
+        setErrors(validationErrors);
+
+        return isValid;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log (`Creds: Login: ${login}, Pass: ${password}`);
-        if(login === '')
-        {
-            setUsernameEmpty(true);
+        if (! validateInputs()){
             return;
         }
-        else{
-            setUsernameEmpty(false);
-        }
-
-        if (username === login && userpassword === password) {
-            setLoginFailed(false);
-            setUser({name: login, password: password, isLoggedIn: true});
-            navigate('/');
-        }
-        else {
-            setLoginFailed(true);
-            return;
-        }
+        
+        setUser({name: login, password: password, isLoggedIn: true});
+        navigate('/');
     }
     return (
         <div id='signInDiv'>
@@ -46,6 +55,8 @@ function SignIn(){
                     onChange={(e)=>{setLogin(e.target.value)}}
                     value={login}
                 />
+                {errors.loginEmpty && <p className="danger-notification">{errors.loginEmpty}</p>}
+
                 <label>Password:</label>
                 <input className="signInForm-input"
                     type='password'
@@ -53,8 +64,9 @@ function SignIn(){
                     onChange={(e)=>{setPassword(e.target.value)}}
                     value={password}
                 />
-                {loginFailed && <p className="danger-notification">Login and password combination are wrong. Please try again</p>}
-                {usernameEmpty && <p className="danger-notification">Login is empty. It is a required field</p>}
+                {errors.passwordEmpty && <p className="danger-notification">{errors.passwordEmpty}</p>}
+                {errors.loginPasswordMismatch && <p className="danger-notification">{errors.loginPasswordMismatch}</p>}
+                
                 <button className="signInButton" type="submit">Login</button>
             </form>
         </div>
