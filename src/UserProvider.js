@@ -7,7 +7,7 @@ export const UserContext = createContext();
 function UserProvider ({children}) {
     const [user, setUser] = useState(() => {
         const savedUser = localStorage.getItem('user');
-        return savedUser ? JSON.parse(savedUser) : { name: '', password: '', isLoggedIn: false };
+        return savedUser ? JSON.parse(savedUser) : { name: '', email: '', password: '', passwordConfirm: '', isLoggedIn: false };
     });
     useEffect(() => {
         // Save user state to localStorage whenever it changes

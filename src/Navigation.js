@@ -5,6 +5,8 @@ import SignIn from "./SignIn";
 import { UserContext } from "./UserProvider";
 import { useContext } from "react";
 import ProtectedRoute from "./ProtectedRoute";
+import SignUp from "./SignUp";
+import About from "./About";
 
 
 function Navigation (){
@@ -15,19 +17,23 @@ function Navigation (){
             <nav className="navigation">
                 <ul className="nav-left">
                     <li className="nav-li"><Link to='/'>Home</Link></li>
-                    <li className="nav-li">Your ToDo</li>
-                    <li className="nav-li">About</li>
+                    {user.isLoggedIn && (
+                            <li className="nav-li">
+                                <Link to='/'>Your ToDo</Link>
+                            </li>
+                    )}
+                    <li className="nav-li"><Link to='/about'>About</Link></li>
                 </ul>
                 <ul className="nav-right">
                     {!user.isLoggedIn && (
                             <>
                                 <li className="nav-li"><Link to="/signin">Sign in</Link></li>
-                                <li className="nav-li">Sign up</li>
+                                <li className="nav-li"><Link to="/signup">Sign up</Link></li>
                             </>
                     )}
                      {user.isLoggedIn && (
                             <li className="nav-li" onClick={() => setUser({ name: '', password: '', isLoggedIn: false })}>
-                                Logout
+                                <Link>Logout</Link>
                             </li>
                     )}
                 </ul>
@@ -41,6 +47,18 @@ function Navigation (){
                                 <SignIn />
                             </ProtectedRoute>
                         }
+                    />
+                    <Route 
+                        path="/signup"
+                        element= {
+                            <ProtectedRoute isAuth={!user.isLoggedIn} redirectPath="/">
+                                <SignUp />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/about"
+                        element={<About/>}
                     />
                 </Routes>
             </Router>

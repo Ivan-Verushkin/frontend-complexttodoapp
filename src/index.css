@@ -10,6 +10,10 @@
   padding: 0 30px;
 }
 
+body {
+  margin: 0;
+}
+
 .nav-left {
   display: flex;
 }
@@ -19,30 +23,21 @@
 }
 
 .nav-li {
-  padding: 10px 15px;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
   list-style: none;
 }
 
-.nav-li:hover {
-  background-color: #575757;
-}
-
 .nav-li a {
-  color: white;
-  text-decoration: none;
+  display: block; /* Make the anchor tag a block-level element to fill the space */
+  padding: 10px 15px; /* Padding inside the link to make it clickable */
+  color: white; /* Text color */
+  text-decoration: none; /* Remove underline */
 }
 
 .nav-li a:hover {
-  background-color: #575757;
+  background-color: #575757; /* Background change on hover */
 }
 
-body {
-  margin: 0;
-}
-
+/* Sign-in form styles */
 #signInDiv {
   display: flex;
   justify-content: center;
@@ -52,13 +47,11 @@ body {
 .signInForm {
   border-width: 2px;
   margin-top: 50px;
-  align-items: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: solid;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
   border-radius: 2px;
   width: 40%;
   font-family: Arial, Helvetica, sans-serif;
@@ -69,19 +62,25 @@ body {
 .signInForm-input {
   margin: 10px;
   padding: 5px;
+  width: 40%; /* Make input fields take full width of the container */
 }
 
 .signInButton {
-  background-color:  #333;
-  color: white;font-family: Arial, Helvetica, sans-serif;
+  background-color: #333;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   border: none;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
+  cursor: pointer; /* Show pointer cursor on hover */
 }
 
 .signInButton:hover {
   background-color: #575757;
+}
+
+.danger-notification {
+  margin-top: 0;
+  font-size: 12px;
+  color: red;
 }
