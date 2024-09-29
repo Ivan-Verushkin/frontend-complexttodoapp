@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserProvider";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 function SignUp() {
     const { setUser } = useContext(UserContext);
@@ -10,6 +11,14 @@ function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({}); // Single state for all errors
     const navigate = useNavigate();
+    const loginInputRef = useRef(null);
+
+
+    useEffect(() => {if (
+        loginInputRef.current) {
+        loginInputRef.current.focus(); // Focus on the input element
+    }
+    }, []); 
 
     // Validation function to handle field checks
     const validateInputs = () => {
@@ -66,6 +75,7 @@ function SignUp() {
                     className="signInForm-input"
                     type="text"
                     placeholder="Name"
+                    ref={loginInputRef}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />

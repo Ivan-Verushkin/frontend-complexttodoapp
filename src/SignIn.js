@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserProvider";
+import { useRef } from "react";
 
 function SignIn(){
     const { setUser } = useContext(UserContext);
@@ -12,6 +13,13 @@ function SignIn(){
     const [login, setLogin] =useState('');
     const [password, setPassword] =useState('');
     const [errors, setErrors] = useState({});
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (inputRef.current){
+            inputRef.current.focus();
+        }
+    }, []);
 
     const validateInputs = () => {
         let validationErrors = {};
@@ -52,6 +60,7 @@ function SignIn(){
                 <input className="signInForm-input"
                     type='text'
                     placeholder='Login'
+                    ref={inputRef}
                     onChange={(e)=>{setLogin(e.target.value)}}
                     value={login}
                 />
