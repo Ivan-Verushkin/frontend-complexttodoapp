@@ -3,17 +3,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserProvider";
 import { useRef } from "react";
+import axios from "axios";
 
 function SignIn(){
     const { setUser } = useContext(UserContext);
 
     const navigate = useNavigate();
-    const username='ivan';
-    const userpassword = '123';
     const [login, setLogin] =useState('');
     const [password, setPassword] =useState('');
     const [errors, setErrors] = useState({});
+    const [response, setResponse] = useState(null);
     const inputRef = useRef(null);
+    const url = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         if (inputRef.current){
@@ -33,9 +34,6 @@ function SignIn(){
         if(password === ''){
             isValid = false;
             validationErrors.passwordEmpty = 'Password can not be empty';
-        } else if (!(username === login && userpassword === password)){
-            isValid = false;
-            validationErrors.loginPasswordMismatch = 'Login and password combination are wrong. Please try again';
         }
 
         setErrors(validationErrors);
@@ -43,15 +41,30 @@ function SignIn(){
         return isValid;
     }
 
-    const handleSubmit = (e) => {
+    const loginUserAsync = async () => {
+        try {
+            const res = await axios.post(url + '/api/Auth/login',{
+                email: login,
+                password
+            });
+            setResponse(res.data);
+            setUser({name: res.data.name, email: login, token: res.data.token, isLoggedIn: true});
+            navigate('/');
+        } catch (error){
+            setErrors({
+                loginPasswordMismatch: 'Login and password combination are wrong. Please try again'
+            });
+        }
+    }
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log (`Creds: Login: ${login}, Pass: ${password}`);
         if (! validateInputs()){
             return;
         }
-        
-        setUser({name: login, password: password, isLoggedIn: true});
-        navigate('/');
+
+        await loginUserAsync();
     }
     return (
         <div id='signInDiv'>
