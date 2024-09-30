@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SignIn from "./SignIn";
-import { UserContext } from "./UserProvider";
+import { UserContext } from "./context/UserProvider";
 import { useContext } from "react";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "./SignUp";

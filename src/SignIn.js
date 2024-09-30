@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "./UserProvider";
+import { UserContext } from "./context/UserProvider";
 import { useRef } from "react";
 
 function SignIn(){

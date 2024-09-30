@@ -1,5 +1,5 @@
 import Navigation from './Navigation';
-import UserProvider from './UserProvider';
+import UserProvider from './context/UserProvider';
 
 function App() {
   return (

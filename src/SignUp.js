@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "./UserProvider";
+import { UserContext } from "./context/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import axios from "axios";
 
 function SignUp() {
     const { setUser } = useContext(UserContext);
@@ -9,18 +10,19 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState({}); // Single state for all errors
+    const [errors, setErrors] = useState({}); 
+    const [response, setResponse] = useState(null);
     const navigate = useNavigate();
     const loginInputRef = useRef(null);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
 
     useEffect(() => {if (
         loginInputRef.current) {
-        loginInputRef.current.focus(); // Focus on the input element
+        loginInputRef.current.focus(); 
     }
     }, []); 
 
-    // Validation function to handle field checks
     const validateInputs = () => {
         let validationErrors = {};
         let isValid = true;
@@ -51,21 +53,36 @@ function SignUp() {
             isValid = false;
         }
 
-        setErrors(validationErrors); // Set errors to state
+        setErrors(validationErrors); 
         return isValid;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!validateInputs()) {
-            return; // Return early if validation fails
+            return; 
         }
-
-        // If everything is valid
-        setUser({ name, email, password, confirmPassword, isLoggedIn: true });
-        navigate('/');
+        await registerUserAsync();
     };
+
+    const registerUserAsync =  async () => {
+        try {
+            const res = await axios.post(apiUrl + '/api/Auth/register', {
+                name,
+                password,
+                email,
+            });
+            setResponse(res.data);
+            setUser({ name, email, token: res.data.token, isLoggedIn: true });
+            navigate('/');
+        } catch (error) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                registrationFailedError: error.response ? error.response.data.message : "Registration failed",
+            }));
+        }
+    }
 
     return (
         <div id='signInDiv'>
@@ -125,6 +142,7 @@ function SignUp() {
                 />
                 {errors.confirmPasswordEmpty && <p className="danger-notification">{errors.confirmPasswordEmpty}</p>}
                 {errors.passwordMismatch && <p className="danger-notification">{errors.passwordMismatch}</p>}
+                {errors.registrationFailedError && <p className="danger-notification">{errors.registrationFailedError}</p>}
 
                 <button className="signInButton" type='submit'>Register</button>
             </form>
