@@ -48,7 +48,7 @@ function SignIn(){
                 password
             });
             setResponse(res.data);
-            setUser({name: res.data.name, email: login, token: res.data.token, isLoggedIn: true});
+            setUser({name: res.data.name, email: login, token: res.data.token, refreshToken: res.data.refreshToken, isLoggedIn: true});
             navigate('/');
         } catch (error){
             setErrors({

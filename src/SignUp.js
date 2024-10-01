@@ -74,7 +74,7 @@ function SignUp() {
                 email,
             });
             setResponse(res.data);
-            setUser({ name, email, token: res.data.token, isLoggedIn: true });
+            setUser({ name, email, token: res.data.token, refreshToken: res.data.refreshToken, isLoggedIn: true });
             navigate('/');
         } catch (error) {
             setErrors((prevErrors) => ({
