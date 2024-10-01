@@ -89,7 +89,11 @@ function SignIn(){
                 {errors.passwordEmpty && <p className="danger-notification">{errors.passwordEmpty}</p>}
                 {errors.loginPasswordMismatch && <p className="danger-notification">{errors.loginPasswordMismatch}</p>}
                 
-                <button className="signInButton" type="submit">Login</button>
+                <button type='submit' className="signInButton">Login</button>
+
+                <button type="button" className="forgotPasswordButton">Forgot password?</button>
+
+                <button type="button" className="registerNewAccountButton">Register new account</button>
             </form>
         </div>
     );

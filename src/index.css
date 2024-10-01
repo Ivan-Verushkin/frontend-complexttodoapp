@@ -8,10 +8,14 @@
   background-color: #333;
   height: 40px;
   padding: 0 30px;
+  border-bottom: #ff6464;
+  border-width: 3px;
+  border-style: solid;
 }
 
 body {
   margin: 0;
+  background-color: #e9ebee;
 }
 
 .nav-left {
@@ -57,30 +61,77 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: bold;
+  background-color: white;
 }
 
 .signInForm-input {
   margin: 10px;
   padding: 5px;
-  width: 40%; /* Make input fields take full width of the container */
+  width: 40%; 
+  min-width: 100px;
 }
 
+
 .signInButton {
-  background-color: #333;
+  margin-top: 10px;
+  background-color: #f54d4d;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   border: none;
   padding: 10px 20px;
-  cursor: pointer; /* Show pointer cursor on hover */
+  cursor: pointer; 
+  transition: opacity 0.2s;
 }
 
 .signInButton:hover {
-  background-color: #575757;
+  opacity: 0.7;
 }
 
 .danger-notification {
   margin-top: 0;
   font-size: 12px;
   color: red;
+}
+
+.forgotPasswordButton {
+  margin-top: 15px;
+  background-color: white;
+  border:none;
+  color: #333;
+  transition: text-decoration 0.2s;
+}
+
+.forgotPasswordButton:hover {
+  text-decoration: underline;
+}
+
+.registerNewAccountButton {
+  margin-top: 15px;
+  border: none;
+  background-color: #868484;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 10px 10px;
+  transition: opacity 0.2s;
+}
+
+.registerNewAccountButton:hover{
+  opacity: 0.7;
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size: 14px; 
+  }
+
+  .signInForm {
+    font-size: 14px;
+    width: 60%;
+  }
+
+  .signInForm-input {
+    width: 50%;
+  }
 }

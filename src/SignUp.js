@@ -87,7 +87,7 @@ function SignUp() {
     return (
         <div id='signInDiv'>
             <form className="signInForm" onSubmit={handleSubmit}>
-                <label>Enter your name:</label>
+                <label>Full name:</label>
                 <input
                     className="signInForm-input"
                     type="text"
@@ -99,7 +99,7 @@ function SignUp() {
                 {errors.nameEmpty && <p className="danger-notification">{errors.nameEmpty}</p>}
                 {errors.nameLength && <p className="danger-notification">{errors.nameLength}</p>}
 
-                <label>Enter your email:</label>
+                <label>Email:</label>
                 <input
                     className="signInForm-input"
                     type="email"
@@ -109,7 +109,7 @@ function SignUp() {
                 />
                 {errors.emailEmpty && <p className="danger-notification">{errors.emailEmpty}</p>}
 
-                <label>Create a password:</label>
+                <label>Password:</label>
                 <input
                     className="signInForm-input"
                     type="password"
@@ -119,7 +119,7 @@ function SignUp() {
                 />
                 {errors.passwordEmpty && <p className="danger-notification">{errors.passwordEmpty}</p>}
 
-                <label>Confirm a password:</label>
+                <label>Confirm password:</label>
                 <input
                     className="signInForm-input"
                     type="password"
