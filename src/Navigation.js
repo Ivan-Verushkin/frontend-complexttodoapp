@@ -8,6 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "./SignUp";
 import About from "./About";
 import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
 
 function Navigation (){
@@ -34,7 +35,7 @@ function Navigation (){
                     )}
                      {user.isLoggedIn && (
                             <li className="nav-li" onClick={() => setUser({ name: '', password: '', isLoggedIn: false })}>
-                                <Link>Logout</Link>
+                                <Link to='/'>Logout</Link>
                             </li>
                     )}
                 </ul>
@@ -64,6 +65,10 @@ function Navigation (){
                     <Route
                         path="/about"
                         element={<About/>}
+                    />
+                    <Route 
+                        path="/reset-password"
+                        element={<ResetPassword/>}
                     />
                 </Routes>
             </Router>

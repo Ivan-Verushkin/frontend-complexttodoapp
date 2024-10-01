@@ -109,16 +109,28 @@ body {
 .registerNewAccountButton {
   margin-top: 15px;
   border: none;
-  background-color: #868484;
-  color: white;
+  background-color: #868484; /* Button background */
+  color: white; /* Button text color */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   padding: 10px 10px;
   transition: opacity 0.2s;
+  text-decoration: none; /* Remove underline from the link */
+  display: inline-block; /* Makes the anchor act more like a button */
+  cursor: pointer;
+}
+
+.registerNewAccountButton a {
+  color: white; /* Button text color */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-decoration: none; 
+  display: inline-block; 
+  cursor: pointer;
 }
 
 .registerNewAccountButton:hover{
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .forgotPasswordInput{
@@ -133,6 +145,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   border-style: solid;
+  border-width: 2px;
+  padding: 40px 60px;
+  background-color: white;
+}
+
+.success-notification {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  border-style: solid;
+  color: rgb(83, 206, 83);
   border-width: 2px;
   padding: 40px 60px;
   background-color: white;

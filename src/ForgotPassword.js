@@ -30,7 +30,7 @@ function ForgotPassword () {
             var res = await axios.post(url + '/api/Auth/forgot-password',{
                 email : email
             });
-            if (res.data === true){
+            if (res.data.message === "Password reset link has been sent to your email."){
                 setForgotPasswordSuccess(true);
             }
 

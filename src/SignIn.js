@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserProvider";
 import { useRef } from "react";
 import axios from "axios";
@@ -98,7 +98,7 @@ function SignIn(){
 
                 <button type="button" className="forgotPasswordButton" onClick={ForgotPasswordClicked}>Forgot password?</button>
 
-                <button type="button" className="registerNewAccountButton">Register new account</button>
+                <button type="button" className="registerNewAccountButton"><Link to='/signup'>Register new account</Link></button>
             </form>
         </div>
     );
