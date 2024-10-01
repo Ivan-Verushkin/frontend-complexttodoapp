@@ -7,6 +7,7 @@ import { useContext } from "react";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "./SignUp";
 import About from "./About";
+import ForgotPassword from "./ForgotPassword";
 
 
 function Navigation (){
@@ -55,6 +56,10 @@ function Navigation (){
                                 <SignUp />
                             </ProtectedRoute>
                         }
+                    />
+                    <Route
+                        path="/forgot-password"
+                        element={<ForgotPassword />}
                     />
                     <Route
                         path="/about"

@@ -121,6 +121,23 @@ body {
   opacity: 0.7;
 }
 
+.forgotPasswordInput{
+  margin: 10px;
+  margin-top: 20px;
+  padding: 5px;
+  width: 40%; 
+  min-width: 100px;
+}
+
+.emailPasswordResetSuccess{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  border-style: solid;
+  border-width: 2px;
+  padding: 40px 60px;
+  background-color: white;
+}
+
 @media (max-width: 700px) {
   body {
     font-size: 14px; 
