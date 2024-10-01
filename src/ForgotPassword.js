@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRef } from "react";
 import axios from "axios";
 
 function ForgotPassword () {
     const [email, setEmail] = useState('');
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState (true);
+    const inputRef = useRef(null);
     const [forgotPasswordSuccess, setForgotPasswordSuccess] = useState(false);
     const url = process.env.REACT_APP_API_URL;
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
     function verifyInputs() {
         const validateErrors = {};
@@ -50,6 +56,7 @@ function ForgotPassword () {
                         placeholder="Your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        ref={inputRef}
                         className="forgotPasswordInput"
                     />
                     {errors.emailEmpty && <p className="danger-notification">{errors.emailEmpty}</p>}

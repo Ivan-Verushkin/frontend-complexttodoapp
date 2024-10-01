@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,13 +8,16 @@ function ResetPassword (){
     const [errorMessage, setErrorMessage] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
     const url = process.env.REACT_APP_API_URL;
-    const navigate = useNavigate();
     const location = useLocation();
+    const inputRef = useRef(null);
 
     const queryParams = new URLSearchParams(location.search);
     const token = queryParams.get('token');
     const email = queryParams.get('email');
 
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -55,6 +58,7 @@ function ResetPassword (){
                             onChange={(e) => setNewPassword(e.target.value)}
                             placeholder="Password"
                             required
+                            ref={inputRef}
                             className="forgotPasswordInput"
                         />
                         <label>Confirm password:</label>
