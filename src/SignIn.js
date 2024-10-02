@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserProvider";
 import { useRef } from "react";
 import axios from "axios";
+import { ToDoContext } from "./context/ToDoProvider";
 
 function SignIn(){
     const { setUser } = useContext(UserContext);
@@ -13,6 +14,7 @@ function SignIn(){
     const [password, setPassword] =useState('');
     const [errors, setErrors] = useState({});
     const [response, setResponse] = useState(null);
+    const {fetchToDoLists} = useContext(ToDoContext);
     const inputRef = useRef(null);
     const url = process.env.REACT_APP_API_URL;
 
@@ -49,6 +51,7 @@ function SignIn(){
             });
             setResponse(res.data);
             setUser({name: res.data.name, email: login, token: res.data.token, refreshToken: res.data.refreshToken, isLoggedIn: true});
+            fetchToDoLists();
             navigate('/');
         } catch (error){
             setErrors({
@@ -59,7 +62,6 @@ function SignIn(){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log (`Creds: Login: ${login}, Pass: ${password}`);
         if (! validateInputs()){
             return;
         }

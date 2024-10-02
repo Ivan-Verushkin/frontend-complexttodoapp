@@ -3,28 +3,40 @@ import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SignIn from "./SignIn";
 import { UserContext } from "./context/UserProvider";
+import { ToDoContext } from "./context/ToDoProvider";
 import { useContext } from "react";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "./SignUp";
 import About from "./About";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
+import ToDoList from "./ToDoList";
 
 
 function Navigation (){
     const {user, setUser} = useContext(UserContext);
+    const {toDoLists, setToDoLists, addToDoList} = useContext(ToDoContext);
     return (
         <>
             <Router>
             <nav className="navigation">
                 <ul className="nav-left">
                     <li className="nav-li"><Link to='/'>Home</Link></li>
-                    {user.isLoggedIn && (
-                            <li className="nav-li">
-                                <Link to='/'>Your ToDo</Link>
-                            </li>
-                    )}
                     <li className="nav-li"><Link to='/about'>About</Link></li>
+                    {user.isLoggedIn && toDoLists.length > 0 && (
+                        <>
+                            {toDoLists.map((toDoList, index) => (
+                                <li className="nav-li" key={index}><Link to={`/to-do/${index+1}`}>ToDo List {index+1} {toDoList.ToDoListName}</Link></li>
+                            ))}
+                        </>
+                    )}
+                    {user.isLoggedIn && 
+                        <>
+                            <li className="nav-li">
+                                <Link to='/to-do'>Create ToDo List</Link>
+                            </li>
+                        </>
+                    }
                 </ul>
                 <ul className="nav-right">
                     {!user.isLoggedIn && (
@@ -69,6 +81,14 @@ function Navigation (){
                     <Route 
                         path="/reset-password"
                         element={<ResetPassword/>}
+                    />
+                    <Route
+                        path="/to-do/:id"
+                        element={
+                            <ProtectedRoute isAuth={user.isLoggedIn} redirectPath="/">
+                                <ToDoList />
+                            </ProtectedRoute>
+                        }
                     />
                 </Routes>
             </Router>
