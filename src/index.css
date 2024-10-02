@@ -11,11 +11,46 @@
   border-bottom: #ff6464;
   border-width: 3px;
   border-style: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
 
 body {
   margin: 0;
   background-color: #e9ebee;
+}
+
+.welcome-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.welcome-header-low{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#home-container {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+#home-text {
+  flex-direction: column;
+  display: flex;
+  width: 60%;
+}
+
+#home-text a {
+  color: black;
+}
+
+.home-content {
+  margin-top: 40px;
 }
 
 .nav-left {
@@ -31,17 +66,16 @@ body {
 }
 
 .nav-li a {
-  display: block; /* Make the anchor tag a block-level element to fill the space */
-  padding: 10px 15px; /* Padding inside the link to make it clickable */
-  color: white; /* Text color */
-  text-decoration: none; /* Remove underline */
+  display: block; 
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
 }
 
 .nav-li a:hover {
-  background-color: #575757; /* Background change on hover */
+  background-color: #575757;
 }
 
-/* Sign-in form styles */
 #signInDiv {
   display: flex;
   justify-content: center;
@@ -109,19 +143,19 @@ body {
 .registerNewAccountButton {
   margin-top: 15px;
   border: none;
-  background-color: #868484; /* Button background */
-  color: white; /* Button text color */
+  background-color: #868484; 
+  color: white; 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   padding: 10px 10px;
   transition: opacity 0.2s;
-  text-decoration: none; /* Remove underline from the link */
-  display: inline-block; /* Makes the anchor act more like a button */
+  text-decoration: none; 
+  display: inline-block;
   cursor: pointer;
 }
 
 .registerNewAccountButton a {
-  color: white; /* Button text color */
+  color: white; 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   text-decoration: none; 
